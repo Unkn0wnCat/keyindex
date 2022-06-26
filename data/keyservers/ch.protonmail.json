@@ -1,0 +1,32 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Unkn0wnCat/keyindex/main/data/schemas/keyservers.schema.json",
+    "name": "ProtonMail",
+    "homepage": "https://proton.me/",
+    "source": "https://proton.me/news/address-verification-pgp-support",
+    "urls": [
+        {
+            "url": "hkps://mail-api.proton.me",
+            "protocol": "hkps"
+        }
+    ],
+    "validates": ["email"],
+    "authority": [
+        {
+            "match": "domain",
+            "equals": "proton.me"
+        },
+        {
+            "match": "domain",
+            "equals": "pm.me"
+        },
+        {
+            "match": "domain",
+            "equals": "protonmail.com"
+        },
+        {
+            "match": "domain",
+            "equals": "protonmail.ch"
+        }
+    ],
+    "authorityExclusive": false
+}

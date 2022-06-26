@@ -1,0 +1,17 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Unkn0wnCat/keyindex/main/data/schemas/keyservers.schema.json",
+    "name": "OpenPGP",
+    "homepage": "https://keys.openpgp.org/",
+    "source": "https://keys.openpgp.org/about/api",
+    "urls": [
+        {
+            "url": "https://keys.openpgp.org",
+            "protocol": "vks"
+        },
+        {
+            "url": "https://keys.openpgp.org",
+            "protocol": "hkps"
+        }
+    ],
+    "validates": ["email"]
+}

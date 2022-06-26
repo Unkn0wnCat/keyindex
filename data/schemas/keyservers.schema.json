@@ -1,0 +1,102 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/Unkn0wnCat/keyindex/main/data/schemas/keyservers.schema.json",
+    "title": "Keyserver",
+    "description": "A server exposing endpoints which allow querying for keys.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "A name for this keyserver",
+            "type": "string"
+        },
+        "homepage": {
+            "description": "The homepage for this keyserver",
+            "type": "string",
+            "format": "uri"
+        },
+        "source": {
+            "description": "The homepage for this keyserver",
+            "type": "string",
+            "format": "uri"
+        },
+        "urls": {
+            "description": "List of URLs under which this keyserver is reachable",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "An URL under which the keyserver responds, and the protocol it uses",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "The base-url of the endpoint",
+                        "format": "uri"
+                    },
+                    "protocol": {
+                        "type": "string",
+                        "description": "The protocol exposed under this endpoint",
+                        "enum": ["vks", "hkps"]
+                    }
+                }
+            }
+        },
+        "validates": {
+            "description": "List of criteria by which this keyserver validates keys",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "The validation criterium",
+                "enum": ["email"]
+            }
+        },
+        "authority": {
+            "description": "List of filters which define what addresses this server has primary authority over",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "description": "An equals address filter",
+                        "properties": {
+                            "match": {
+                                "type": "string",
+                                "description": "Which part of the address to match",
+                                "enum": ["domain", "localpart", "tld", "full"]
+                            },
+                            "equals": {
+                                "type": "string",
+                                "description": "The string the specified part must equal"
+                            }
+                        },
+                        "required": ["match", "equals"]
+                    },
+                    {
+                        "type": "object",
+                        "description": "An regex address filter",
+                        "properties": {
+                            "match": {
+                                "type": "string",
+                                "description": "Which part of the address to match",
+                                "enum": ["domain", "localpart", "tld", "full"]
+                            },
+                            "regex": {
+                                "type": "string",
+                                "description": "A regex to match the specified part against"
+                            }
+                        },
+                        "required": ["match", "regex"]
+                    }
+                ]
+            }
+        },
+        "authorityExclusive": {
+            "description": "Specifies if a keyserver with authority should be asked for keys outside of its scope (ignored if authority is not set)",
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "required": [
+        "name",
+        "source",
+        "urls"
+    ]
+}

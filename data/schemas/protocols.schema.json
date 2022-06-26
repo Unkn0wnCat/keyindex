@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/Unkn0wnCat/keyindex/main/data/schemas/protocols.schema.json",
+    "title": "Keyserver",
+    "description": "A server exposing endpoints which allow querying for keys.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "The ID as referenced in the protocol field (should match filename)"
+        },
+        "name": {
+            "type": "string",
+            "description": "A name for this protocol"
+        },
+        "specification": {
+            "type": "string",
+            "description": "An URI where the specification for the protocol can be found",
+            "format": "uri"
+        },
+        "endpoints": {
+            "type": "array",
+            "description": "A list of endpoints",
+            "items": {
+                "type": "object",
+                "description": "An endpoint",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "A relative URL to the endpoint"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "What this URL can be used to look up",
+                        "enum": ["by-email", "by-fingerprint", "by-keyid"]
+                    }
+                }
+            }
+        }
+    }
+}

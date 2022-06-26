@@ -1,0 +1,20 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Unkn0wnCat/keyindex/main/data/schemas/protocols.schema.json",
+    "id": "hkps",
+    "name": "HTTP Keyserver Protocol",
+    "specification": "https://datatracker.ietf.org/doc/html/draft-shaw-openpgp-hkp-00",
+    "endpoints": [
+        {
+            "url": "/pks/lookup?op=get&options=mr&search={{email}}",
+            "type": "by-email"
+        },
+        {
+            "url": "/pks/lookup?op=get&options=mr&search={{keyid}}",
+            "type": "by-keyid"
+        },
+        {
+            "url": "/pks/lookup?op=get&options=mr&search={{fingerprint}}",
+            "type": "by-fingerprint"
+        }
+    ]
+}
